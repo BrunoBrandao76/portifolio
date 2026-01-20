@@ -22,7 +22,6 @@ export const profile = {
 
   links: {
     github: "https://github.com/BrunoBrandao76",
-    instagram: "httpswww.instagram.combruno_brandao63",
     linkedin: "https://www.linkedin.com/in/bruno-brand%C3%A3o-3111891b5/",
     cv: "",
     whatsappNumber: "5581996323633",

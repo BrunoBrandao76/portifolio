@@ -19,9 +19,6 @@
           <a class="social-btn" :href="profile.links.github" target="_blank" rel="noreferrer">
             <i class="pi pi-github"></i> GitHub
           </a>
-          <a class="social-btn" :href="profile.links.instagram" target="_blank" rel="noreferrer">
-            <i class="pi pi-instagram"></i> Instagram
-          </a>
           <a class="social-btn" :href="profile.links.linkedin" target="_blank" rel="noreferrer">
             <i class="pi pi-linkedin"></i> LinkedIn
           </a>
