@@ -1,0 +1,134 @@
+/* src/styles/theme.css */
+
+/* ============================
+   TEMA "DARK PURPLE" MODERNO
+   ============================
+   - Usamos CSS variables para ficar fácil alterar cores depois.
+   - O visual fica atual, com gradientes, blur e cards com bordas suaves.
+*/
+:root {
+  --bg-0: #090512;          /* fundo principal */
+  --bg-1: #0f0a1f;          /* variação para seções */
+  --card: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.10);
+
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+
+  --primary: #7c3aed;       /* roxo vibrante */
+  --primary-2: #a855f7;     /* roxo claro */
+  --accent: #22d3ee;        /* detalhe ciano pra dar contraste */
+
+  --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  --radius: 18px;
+  --radius-2: 24px;
+}
+
+/* Reset básico e tipografia */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(124, 58, 237, 0.22), transparent 60%),
+    radial-gradient(900px 520px at 80% 30%, rgba(34, 211, 238, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1));
+}
+
+/* Container central */
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+/* Títulos e texto */
+.h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+  margin: 0;
+}
+.h2 {
+  font-size: clamp(20px, 2.2vw, 28px);
+  margin: 0;
+}
+.p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Cards */
+.glass {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+/* Botões sociais (estilo moderno) */
+.social-btn {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.social-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(124, 58, 237, 0.18);
+  border-color: rgba(168, 85, 247, 0.65);
+}
+.social-btn .pi { font-size: 1.1rem; }
+
+/* Separador */
+.hr {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+/* Layout responsivo utilitário */
+.grid {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* Pequenos detalhes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--muted);
+}
+
+/* Ajustes de componentes PrimeVue (leve) */
+.p-inputtext {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--text) !important;
+}
+.p-dropdown {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+}
+.p-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
