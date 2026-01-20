@@ -14,6 +14,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# ✅ Diz para todos os comandos "run" rodarem dentro da pasta do seu projeto
+defaults:
+  run:
+    working-directory: meu-portfolio
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,6 +31,8 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          # ✅ cache dentro da subpasta do projeto
+          cache-dependency-path: meu-portfolio/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -36,7 +43,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          # ✅ dist fica dentro da subpasta
+          path: meu-portfolio/dist
 
   deploy:
     needs: build
