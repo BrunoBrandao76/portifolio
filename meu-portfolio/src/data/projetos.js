@@ -7,7 +7,7 @@ export const projects = [
     longDesc:
       "Fluxo completo do portal/app do cidadão até a operação interna. Inclui integrações, regras de negócio, rastreabilidade e controle operacional.",
     tech: ["Vue 3", "PrimeVue", "C#", ".NET", "EF Core", "SQL"],
-    github: "https://github.com/seuusuario/agendamento-presencial",
-    demo: "",
+  
   },
+  
 ];

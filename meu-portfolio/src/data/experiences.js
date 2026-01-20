@@ -1,6 +1,6 @@
 export const experiences = [
   {
-    title: "Desenvolvedor de Software III",
+    title: "Desenvolvedor de Software",
     company: "Blue Technology",
     location: "Recife, PE (Presencial)",
     period: "Jan/2024 — Atualmente",

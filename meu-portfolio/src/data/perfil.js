@@ -2,7 +2,7 @@ export const profile = {
   name: "Bruno Brandão",
   role: "Full Stack / .NET & Vue",
   location: "Recife - PE, Brasil",
-  email: "seuemail@dominio.com",
+  email: "brunobrandaodl@gmail.com",
 
   headline:
     "Atuo com desenvolvimento e evolução de sistemas (full stack), integrações, rastreabilidade/auditoria e segurança da informação — sempre com foco em qualidade e consistência nas entregas.",
@@ -10,7 +10,7 @@ export const profile = {
   about:
     "Sou desenvolvedor com foco em entregar soluções sólidas e bem estruturadas. Gosto de código limpo, padrões (ex.: CQRS), automações e uma visão forte de qualidade.",
 
-  currentTitle: "Desenvolvedor de Software III",
+  currentTitle: "Desenvolvedor de Software",
   currentCompany: "Blue Technology",
   areas: "Backend (.NET), Frontend (Vue), Integrações, Qualidade",
   availability: "Aberto a oportunidades e freelas",
@@ -18,17 +18,14 @@ export const profile = {
   stats: { years: 2, projects: 12, focus: "Qualidade + Entrega" },
   dailyStack: ["C#", ".NET", "EF Core", "MediatR", "Vue 3", "PrimeVue", "SQL", "Docker"],
 
-  // Se você ainda não colocou a foto local, pode deixar um link temporário:
-  // photoUrl: "https://i.imgur.com/9QO7QZp.png",
-  // Se colocar local em: src/assets/images/perfil.jpg -> use:
   photoUrl: new URL("../assets/images/perfil.jpg", import.meta.url).href,
 
   links: {
-    github: "https://github.com/seuusuario",
-    instagram: "https://instagram.com/seuusuario",
-    linkedin: "https://linkedin.com/in/seuusuario",
+    github: "https://github.com/BrunoBrandao76",
+    instagram: "httpswww.instagram.combruno_brandao63",
+    linkedin: "https://www.linkedin.com/in/bruno-brand%C3%A3o-3111891b5/",
     cv: "",
-    whatsappNumber: "5581999999999",
+    whatsappNumber: "5581996323633",
   },
 
   differentials: [

@@ -2,7 +2,7 @@
   <section id="contato" class="section">
     <div class="section__head">
       <h2 class="h2">Contato</h2>
-      <p class="p">Mande uma mensagem rápida (ou use WhatsApp / e-mail).</p>
+      <p class="p">Mande umaa mensagem rápida (ou use WhatsApp / e-mail).</p>
     </div>
 
     <div class="grid grid-2">
