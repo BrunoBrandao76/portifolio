@@ -1,63 +1,64 @@
 <template>
-  <!-- O App agora s� "monta" as se��es -->
-  <Toast />
+  <div>
+    <!-- Toast global -->
+    <Toast />
 
-  <NavBar
-    :profile="profile"
-    @go="scrollToId"
-    @openLink="openLink"
-  />
+    <NavBar :profile="profile" @go="scrollTo" @openLink="openLink" />
 
-  <main class="container">
-    <SecaoDestaque
-      :profile="profile"
-      :whatsappLink="whatsappLink"
-      @go="scrollToId"
+    <main class="container hero">
+      <SecaoDestaque
+        :profile="profile"
+        :whatsappLink="whatsappLink"
+        @go="scrollTo"
+        @openLink="openLink"
+        @copyEmail="copyEmail"
+      />
+
+      <SecaoSobre :profile="profile" />
+
+      <SecaoExperiencia :experiences="experiences" />
+
+      <SecaoProjetos
+        :projects="projects"
+        @openLink="openLink"
+        @openProject="openProject"
+      />
+
+      <SecaoHabilidades :skills="skills" />
+
+      <SecaoContato
+        :profile="profile"
+        :whatsappNumber="profile.links.whatsappNumber"
+        @openLink="openLink"
+        @copyEmail="copyEmail"
+      />
+
+      <SecaoRodape :name="profile.name" @top="scrollToTop" />
+
+      <ScrollTop />
+    </main>
+
+    <!-- Dialog separado -->
+    <DialogProjeto
+      v-model:visible="projectDialogVisible"
+      :selectedProject="selectedProject"
       @openLink="openLink"
-      @copyEmail="copyEmail"
     />
-
-    <SecaoSobre :profile="profile" />
-
-    <SecaoExperiencia :experiencias="experiences" />
-
-    <SecaoProjetos
-      :projects="projects"
-      @openLink="openLink"
-      @openProject="openProject"
-    />
-
-    <SecaoHabilidades :skills="skills" />
-
-    <SecaoContato
-      :profile="profile"
-      :whatsappNumber="profile.links.whatsappNumber"
-      @copyEmail="copyEmail"
-    />
-
-    <SecaoRodape
-      :name="profile.name"
-      @top="scrollToTop"
-    />
-
-    <ScrollTop />
-  </main>
-
-  <DialogProjeto
-    v-model="projectDialogVisible"
-    :selectedProject="selectedProject"
-    @openLink="openLink"
-  />
+  </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-
+// ===============================
 // PrimeVue
+// ===============================
 import Toast from "primevue/toast";
 import ScrollTop from "primevue/scrolltop";
+import { computed, ref } from "vue";
+import { useToast } from "primevue/usetoast";
 
-// Componentes de se��o
+// ===============================
+// Componentes
+// ===============================
 import NavBar from "./components/NavBar.vue";
 import SecaoDestaque from "./components/SecaoDestaque.vue";
 import SecaoSobre from "./components/SecaoSobre.vue";
@@ -68,48 +69,71 @@ import SecaoContato from "./components/SecaoContato.vue";
 import SecaoRodape from "./components/SecaoRodape.vue";
 import DialogProjeto from "./components/DialogProjeto.vue";
 
-// Dados est�ticos
+// ===============================
+// Dados separados
+// ===============================
+
 import { profile } from "./data/perfil";
 import { experiences } from "./data/experiences";
 import { projects } from "./data/projetos";
 import { skills } from "./data/skills";
 
-// Composables reutilizaveis
-import { useLinks } from "./reutilizavel/useLinks";
-import { useClipboard } from "./reutilizavel/useClipboard";
-import { useScroll } from "./reutilizavel/useScroll";
+// ===============================
+// Toast helper (notificações)
+// ===============================
+const toast = useToast();
+function notify(summary, detail = "", severity = "success") {
+  toast.add({ severity, summary, detail, life: 2800 });
+}
 
-const { openLink } = useLinks();
-const { copyText } = useClipboard();
-const { scrollToId, scrollToTop } = useScroll();
-
+// ===============================
+// WhatsApp link com texto padrão
+// ===============================
 const whatsappLink = computed(() => {
   const base = `https://wa.me/${profile.links.whatsappNumber}`;
-  const text = encodeURIComponent("Ol�! Vim pelo seu portf�lio e gostaria de conversar.");
+  const text = encodeURIComponent("Olá! Vim pelo seu portfólio e gostaria de conversar.");
   return `${base}?text=${text}`;
 });
 
-function copyEmail() {
-  copyText(profile.email);
+// ===============================
+// Utilitários (abrir link / copiar / scroll)
+// ===============================
+function openLink(url) {
+  if (!url) {
+    notify("Link não configurado", "Edite o link em src/data/profile.js", "warn");
+    return;
+  }
+  window.open(url, "_blank", "noreferrer");
 }
 
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText(profile.email);
+    notify("E-mail copiado!", profile.email, "success");
+  } catch {
+    notify("Não consegui copiar", "Seu navegador bloqueou a cópia.", "warn");
+  }
+}
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ===============================
+// Dialog de projeto
+// ===============================
 const projectDialogVisible = ref(false);
 const selectedProject = ref(null);
 
-function openProject(project) {
-  selectedProject.value = project;
+function openProject(p) {
+  selectedProject.value = p;
   projectDialogVisible.value = true;
 }
 </script>
-
-<style scoped>
-main {
-  padding-top: 34px;
-  padding-bottom: 60px;
-}
-</style>
-
-
-
-
 
